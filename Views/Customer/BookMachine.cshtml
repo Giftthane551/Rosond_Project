@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Book a Machine";
+    var machines = ViewBag.Machines as List<Machine>;
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="MachineId">Select Machine</label>
+        <select id="MachineId" name="MachineId" class="form-control" required>
+            <option value="">-- Select Machine --</option>
+            @if (machines != null && machines.Count > 0)
+            {
+                foreach (var machine in machines)
+                {
+                    <option value="@machine.MachineId">@machine.MachineName</option>
+                }
+            }
+            else
+            {
+                <option value="">No machines available</option>
+            }
+        </select>
+    </div>
+    <!-- Other form fields -->
+    <button type="submit" class="btn btn-primary">BookNow</button>
+</form>
